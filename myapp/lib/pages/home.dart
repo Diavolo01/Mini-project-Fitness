@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/Pages/Booking.dart';
 
 class MyApp extends StatelessWidget {
   static const appTitle = "Let's Workout";
@@ -14,145 +15,120 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Index 0: Home',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 1: Business',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 2: School',
+      style: optionStyle,
+    ),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: ListView(padding: EdgeInsets.zero, children: [
-          const DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.blue,
-            ),
-            child: Text("Rule"),
-          )
-        ]),
-      ),
       appBar: AppBar(
         title: Text(MyApp.appTitle),
       ),
       body: Container(
-        decoration: BoxDecoration(color: Colors.white),
-       
-        child: Column(children: [
-          Container(
-            decoration: BoxDecoration(
-              border: Border.all(width: 0.5, color: Colors.grey.shade400),
-              color: Colors.grey[200],
+  decoration: BoxDecoration(color: Colors.white),
+  child: Column(
+    children: [
+      Container(
+        decoration: BoxDecoration(
+          border: Border.all(width: 0.5, color: Colors.grey.shade400),
+          color: Colors.grey[200],
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(10),
+          child: Row(children: const [
+            Icon(
+              Icons.home,
             ),
-            child: Padding(
-              padding: EdgeInsets.all(10),
-              child: Row(children: const [
-                Icon(
-                  Icons.home,
-                ),
-                Text("Home"),
-              ]),
-            ),
-          ),
-          Column(children: [
-            Container(
-              height: 50,
-              width: 1000,
-              decoration: BoxDecoration(
-                  border: Border.all(width: 0.5, color: Colors.black12),
-                  color: Colors.blue),
-              child: const Center(
-                child: Text(
-                  "Date",
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
-                ),
+            Text("Home"),
+          ]),
+        ),
+      ),
+      Container(
+        width: 250.00,
+        height: 250.00,
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: Image.asset(
+                'assets/images/GymBooking.png',
+                fit: BoxFit.fitHeight,
               ),
-            ),]
-          ),
-          Padding(
-            padding: EdgeInsets.zero,
-            child: Container(
-              height: 100,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  border: Border.all(width: 0.5, color: Colors.grey.shade400),
-                  color: Colors.grey.shade200),
-              child: Column(
-                children: [
-                  Table(
-                    border: TableBorder.all(),
-                    defaultColumnWidth: FixedColumnWidth(100),
-                    children: [
-                      TableRow(
-                        children: [
-                          Container(
-                            height: 32,
-                            child: const Center(
-                              child: Text(
-                                "No.",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Row(
+                  mainAxisAlignment:  MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      child: ElevatedButton(
+                        child: const Text("Booking"),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const BookingPage(),
                             ),
-                          ),
-                          Container(
-                            height: 32,
-                            child: const Center(
-                              child: Text(
-                                "Time Submit",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            height: 32,
-                            child: const Center(
-                              child: Text(
-                                "Time Use",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            height: 32,
-                            child: const Center(
-                              child: Text(
-                                "Name",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                          );
+                        },
                       ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(17),
-                    child: Row(
-                      children: const [
-                        Text("<< No Data >>"),
-                      ],
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
+              ],
             ),
-          )
-        ]),
+          ],
+        ),
+      ),
+    ],
+  ),
+),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.chat),
+            label: 'Message',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.menu),
+            label: 'More',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.amber[800],
+        onTap: _onItemTapped,
       ),
     );
   }

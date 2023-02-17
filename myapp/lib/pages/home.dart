@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/Pages/Booking.dart';
+//import 'package:myapp/Pages/AttachFile.dart';
+import 'package:myapp/Pages/Payment.dart';
 
 class MyApp extends StatelessWidget {
   static const appTitle = "Let's Workout";
@@ -53,64 +55,111 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(MyApp.appTitle),
       ),
       body: Container(
-  decoration: BoxDecoration(color: Colors.white),
-  child: Column(
-    children: [
-      Container(
-        decoration: BoxDecoration(
-          border: Border.all(width: 0.5, color: Colors.grey.shade400),
-          color: Colors.grey[200],
-        ),
-        child: Padding(
-          padding: EdgeInsets.all(10),
-          child: Row(children: const [
-            Icon(
-              Icons.home,
-            ),
-            Text("Home"),
-          ]),
-        ),
-      ),
-      Container(
-        width: 250.00,
-        height: 250.00,
-        child: Stack(
+        decoration: BoxDecoration(color: Colors.white),
+        child: Column(
           children: [
-            Positioned.fill(
-              child: Image.asset(
-                'assets/images/GymBooking.png',
-                fit: BoxFit.fitHeight,
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(width: 0.5, color: Colors.grey.shade400),
+                color: Colors.grey[200],
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(10),
+                child: Row(children: const [
+                  Icon(
+                    Icons.home,
+                  ),
+                  Text("Home"),
+                ]),
               ),
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Row(
-                  mainAxisAlignment:  MainAxisAlignment.center,
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Container(
+                width: 350.00,
+                height: 250.00,
+                child: Stack(
                   children: [
-                    Container(
-                      child: ElevatedButton(
-                        child: const Text("Booking"),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const BookingPage(),
-                            ),
-                          );
-                        },
+                    Positioned.fill(
+                      child: Image.asset(
+                        'assets/images/GymBooking.png',
+                        fit: BoxFit.fitHeight,
                       ),
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              child: ElevatedButton(
+                                child: const Text("Booking"),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const BookingPage(),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(0.0),
+              child: Container(
+                width: 350.00,
+                height: 170.00,
+                child: Stack(
+                  children: [
+                    Positioned.fill(
+                      child: Image.asset(
+                        'assets/images/PaymentImg.png',
+                        fit: BoxFit.fitWidth,
+                      ),
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 25.0),
+                              child: Container(
+                                child: ElevatedButton(
+                                  child: const Text("Payment"),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const PaymentPage(),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
       ),
-    ],
-  ),
-),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

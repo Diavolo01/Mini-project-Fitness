@@ -15,13 +15,18 @@ class _BookingPageState extends State<BookingPage> {
         title: const Text('Booking'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Expanded(
-            child: Container(),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                border: Border.all(width: 0.5, color: Colors.grey.shade400),
+              ),
+            ),
           ),
-          Flexible(
-            child: Center(
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(5.0),
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context);
@@ -32,7 +37,6 @@ class _BookingPageState extends State<BookingPage> {
           ),
         ],
       ),
-
     );
   }
 }

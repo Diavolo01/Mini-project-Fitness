@@ -84,6 +84,11 @@ class _MyHomePageState extends State<MyHomePage> {
                               'assets/images/PaymentImg.png',
                             ),
                           ),
+                          Positioned.fill(
+                            child: Image.asset(
+                              'assets/images/GymBooking.png',
+                            ),
+                          ),
                         ],
                       ),
                       Positioned(

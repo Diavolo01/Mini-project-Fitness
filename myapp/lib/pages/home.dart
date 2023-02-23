@@ -3,20 +3,8 @@ import 'package:myapp/Pages/Booking.dart';
 //import 'package:myapp/Pages/AttachFile.dart';
 import 'package:myapp/Pages/Payment.dart';
 
-class MyApp extends StatelessWidget {
-  static const appTitle = "Let's Workout";
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: appTitle,
-      home: MyHomePage(title: appTitle),
-      theme: ThemeData(primarySwatch: Colors.orange),
-    );
-  }
-}
-
 class MyHomePage extends StatefulWidget {
+  static const appTitle = "Let's Workout";
   const MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
   @override
@@ -52,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(MyApp.appTitle),
+        title: Text("Let's Workout"),
       ),
       body: Container(
         decoration: BoxDecoration(color: Colors.white),
@@ -134,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(bottom: 25.0),
-                              child: Container(
+
                                 child: ElevatedButton(
                                   child: const Text("Payment"),
                                   onPressed: () {
@@ -148,7 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                               ),
-                            ),
+
                           ],
                         ),
                       ],
@@ -163,16 +151,16 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.notifications),
+            label: 'Notifications',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.chat),
             label: 'Message',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.menu),
-            label: 'More',
+            icon: Icon(Icons.person),
+            label: 'USER',
           ),
         ],
         currentIndex: _selectedIndex,

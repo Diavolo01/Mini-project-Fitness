@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/Pages/Payment/Payment.dart';
+import 'package:myapp/pages/Payment/Payment.dart';
 
 class BookingPage extends StatefulWidget {
   const BookingPage({super.key});

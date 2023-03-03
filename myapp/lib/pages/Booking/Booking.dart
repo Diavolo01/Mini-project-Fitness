@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/pages/Payment/Payment.dart';
+import '../Date/date_pick.dart';
+import 'Booking2.dart';
+
+String _selectedCity = "New York";
 
 class BookingPage extends StatefulWidget {
   const BookingPage({super.key});
@@ -17,158 +20,129 @@ class _BookingPageState extends State<BookingPage> {
       ),
       body: Container(
         decoration: BoxDecoration(color: Colors.white),
-        child: Column(
-          children: [
-            Container(
+        child: Column(children: [
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(width: 0.5, color: Colors.grey.shade400),
+              color: Colors.grey[200],
+            ),
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: Row(children: const [
+                Icon(
+                  Icons.home,
+                ),
+                Text("Home "),
+                Text(" > "),
+                Icon(Icons.book),
+                Text("Booking"),
+              ]),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              width: double.infinity,
+              height: 500,
               decoration: BoxDecoration(
-                border: Border.all(width: 0.5, color: Colors.grey.shade400),
-                color: Colors.grey[200],
+                border: Border.all(width: 2, color: Colors.grey.shade400),
+                color: Colors.white,
               ),
-              child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Row(children: const [
-                  Icon(
-                    Icons.home,
+              child: Column(
+                children: [
+                  Text(
+                    "Place",
+                    style: TextStyle(
+                      fontSize: 45,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  Text("Home "),
-                  Text(" > "),
-                  Icon(Icons.book),
-                  Text("Booking"),
-                ]),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: double.infinity,
-                height: 500,
-                decoration: BoxDecoration(
-                  border: Border.all(width: 2, color: Colors.grey.shade400),
-                  color: Colors.white,
-                ),
-                child: Column(
-                  children: [
-                    Text(
-                      "Date",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Center(
+                      child: DropdownButton(
+                          value: _selectedCity,
+                          onChanged: (newValue) {
+                            setState(() {
+                              _selectedCity = newValue!;
+                            });
+                          },
+                          items: const [
+                            DropdownMenuItem(
+                                child: Text("New York"), value: "New York"),
+                            DropdownMenuItem(
+                                child: Text("Chiang rai"), value: "Chiang rai"),
+                            DropdownMenuItem(
+                                child: Text("Phuket"), value: "Phuket"),
+                            DropdownMenuItem(
+                                child: Text("Bangkok"), value: "Bangkok"),
+                          ],
+                          iconSize: 50,
+                          iconEnabledColor: Colors.red,
+                          isExpanded: true,
+                          style: const TextStyle(
+                            color: Colors.red,
+                            fontSize: 20,
+                          )),
+                    ),
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        "Date",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
+                      Center(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Selected_Date(title: 'Booking Date'),),
+                            );
+                          },
+                          child: Text('Booking Date'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+
+              ),
+
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(
+                  height: 50,
+                  width: 150,
+                  decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(20)),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => Booking_Date_Selected()));
+                    },
+                    child: Text(
+                      'Next',
+                      style: TextStyle(color: Colors.white, fontSize: 15),
                     ),
-                    Table(
-                      border: TableBorder.all(),
-                      columnWidths: {
-                        0: FlexColumnWidth(2.0),
-                        1: FlexColumnWidth(3.0),
-                        2: FlexColumnWidth(4.0),
-                      },
-                      children: [
-                        TableRow(
-                          decoration: BoxDecoration(
-                            color: Colors.grey[300],
-                          ),
-                          children: [
-                            TableCell(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text('Header 1'),
-                              ),
-                            ),
-                            TableCell(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text('Header 2'),
-                              ),
-                            ),
-                            TableCell(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text('Header 3'),
-                              ),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Container(
-                              padding: EdgeInsets.all(8.0),
-                              alignment: Alignment.centerLeft,
-                              child: Text('1'),
-                            ),
-                            Container(
-                              padding: EdgeInsets.all(8.0),
-                              alignment: Alignment.center,
-                              child: Text('2'),
-                            ),
-                            Container(
-                              padding: EdgeInsets.all(8.0),
-                              alignment: Alignment.centerRight,
-                              child: Text('3'),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Container(
-                              padding: EdgeInsets.all(8.0),
-                              alignment: Alignment.centerLeft,
-                              child: Text('4'),
-                            ),
-                            Container(
-                              padding: EdgeInsets.all(8.0),
-                              alignment: Alignment.center,
-                              child: Text('5'),
-                            ),
-                            Container(
-                              padding: EdgeInsets.all(8.0),
-                              alignment: Alignment.centerRight,
-                              child: Text('6'),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Container(
-                              padding: EdgeInsets.all(8.0),
-                              alignment: Alignment.centerLeft,
-                              child: Text('7'),
-                            ),
-                            Container(
-                              padding: EdgeInsets.all(8.0),
-                              alignment: Alignment.center,
-                              child: Text('8'),
-                            ),
-                            Container(
-                              padding: EdgeInsets.all(8.0),
-                              alignment: Alignment.centerRight,
-                              child: Text('9'),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
+                  ),
                 ),
               ),
-            ),
-            Container(
-              height: 50,
-              width: 250,
-              decoration: BoxDecoration(
-                  color: Colors.red, borderRadius: BorderRadius.circular(20)),
-              child: TextButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => PaymentPage()));
-                },
-                child: Text(
-                  'Payment',
-                  style: TextStyle(color: Colors.white, fontSize: 25),
-                ),
-              ),
-            ),
-          ],
-        ),
+            ],
+          ),
+        ]),
       ),
     );
   }

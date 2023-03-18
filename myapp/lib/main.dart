@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/Pages/LoginPage/LoginPage.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+
+Future<void> main() async {
   var app = MyApp();
   runApp(app);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 }
+
 class MyApp extends StatelessWidget {
   static const appTitle = "Let's Workout";
   @override
@@ -17,3 +24,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/Pages/Booking.dart';
+import 'package:myapp/Pages/Booking/Booking.dart';
 //import 'package:myapp/Pages/AttachFile.dart';
-import 'package:myapp/Pages/Payment.dart';
+import 'package:myapp/Pages/Payment/Payment.dart';
 
 class MyHomePage extends StatefulWidget {
   static const appTitle = "Let's Workout";
@@ -53,31 +53,49 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               child: Padding(
                 padding: EdgeInsets.all(10),
-                child: Row(children: const [
-                  Icon(
-                    Icons.home,
-                  ),
-                  Text("Home"),
-                ]),
+                child: Row(
+                  children: const [
+                    Icon(
+                      Icons.home,
+                    ),
+                    Text("Home"),
+                  ],
+                ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Container(
-                width: 350.00,
-                height: 250.00,
-                child: Stack(
-                  children: [
-                    Positioned.fill(
-                      child: Image.asset(
-                        'assets/images/GymBooking.png',
-                        fit: BoxFit.fitHeight,
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                  ),
+                  child: Stack(
+                    children: [
+                      ListView(
+                        children: [
+                          Positioned.fill(
+                            child: Image.asset(
+                              'assets/images/GymBooking.png',
+                            ),
+                          ),
+                          Positioned.fill(
+                            child: Image.asset(
+                              'assets/images/PaymentImg.png',
+                            ),
+                          ),
+                          Positioned.fill(
+                            child: Image.asset(
+                              'assets/images/GymBooking.png',
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Row(
+                      Positioned(
+                        bottom: 20,
+                        left: 0,
+                        right: 0,
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
@@ -95,53 +113,9 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ],
                         ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(0.0),
-              child: Container(
-                width: 350.00,
-                height: 170.00,
-                child: Stack(
-                  children: [
-                    Positioned.fill(
-                      child: Image.asset(
-                        'assets/images/PaymentImg.png',
-                        fit: BoxFit.fitWidth,
                       ),
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 25.0),
-
-                                child: ElevatedButton(
-                                  child: const Text("Payment"),
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            const PaymentPage(),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ),
-
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

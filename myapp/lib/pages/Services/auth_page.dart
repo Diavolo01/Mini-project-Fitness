@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import '../HomePage/home.dart';
 import '../LoginPage/LoginPage.dart';
 
-
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
 
@@ -16,7 +15,9 @@ class AuthPage extends StatelessWidget {
         builder: (context, snapshot) {
           // user is logged in
           if (snapshot.hasData) {
-            return MyHomePage();
+            return MyHomePage(
+              title: MyHomePage.appTitle,
+            );
           }
 
           // user is NOT logged in

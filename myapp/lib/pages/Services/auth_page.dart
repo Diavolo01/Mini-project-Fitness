@@ -19,6 +19,7 @@ class AuthPage extends StatelessWidget {
               title: MyHomePage.appTitle
             );
           }
+
           // user is NOT logged in
           else {
             return LoginPage();

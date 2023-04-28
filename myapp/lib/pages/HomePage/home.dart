@@ -1,44 +1,45 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/pages/Booking/Booking.dart';
+
+import '../LoginPage/LoginPage.dart';
 
 class MyHomePage extends StatefulWidget {
   static const appTitle = "Let's Workout";
   const MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
-  ];
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+  final user = FirebaseAuth.instance.currentUser!;
+
+  void signUserOut(BuildContext context) async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => LoginPage()),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Let's Workout"),
+        title: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.0),
+          child: Text("Let's Workout"),
+        ),
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            onPressed: () => signUserOut(context),
+            icon: Icon(Icons.logout),
+          ),
+        ],
       ),
       body: Container(
         decoration: BoxDecoration(color: Colors.white),
@@ -120,25 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: 'Notifications',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: 'Message',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'USER',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        onTap: _onItemTapped,
-      ),
+
     );
   }
 }

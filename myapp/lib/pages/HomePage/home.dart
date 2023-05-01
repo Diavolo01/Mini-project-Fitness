@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/pages/Booking/Booking.dart';
 
+import '../Booking/History.dart';
 import '../LoginPage/LoginPage.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -20,9 +21,7 @@ class _MyHomePageState extends State<MyHomePage> {
     await FirebaseAuth.instance.signOut();
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(
-          builder: (context) => LoginPage(
-              )),
+      MaterialPageRoute(builder: (context) => LoginPage()),
     );
   }
 
@@ -96,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         left: 0,
                         right: 0,
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
                               child: ElevatedButton(
@@ -105,7 +104,35 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => const BookingPage(),
+                                      builder: (context) =>
+                                          const BookingScreen(),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 20,
+                        left: 0,
+                        right: 0,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              child: ElevatedButton(
+                                child: const Text("History"),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => BookingHistoryPage(
+                                        city: "New York",
+                                        date: DateTime.now(),
+                                        timeSlot: TimeOfDay.now(),
+                                      ),
                                     ),
                                   );
                                 },

@@ -80,7 +80,12 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                           Positioned.fill(
                             child: Image.asset(
-                              'assets/images/PaymentImg.png',
+                              'assets/images/gympro1.jpg',
+                            ),
+                          ),
+                          Positioned.fill(
+                            child: Image.asset(
+                              'assets/images/gympro2.jpg',
                             ),
                           ),
                           Positioned.fill(
@@ -105,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          const BookingScreen(),
+                                      const BookingScreen(),
                                     ),
                                   );
                                 },

@@ -174,3 +174,100 @@ class _BookingScreenState extends State<BookingScreen> {
             ])));
   }
 }
+
+class PaymentPage extends StatelessWidget {
+  final String? selectedCity;
+  final DateTime? selectedDate;
+  final String? selectedTimeSlot;
+
+  PaymentPage({
+    required this.selectedCity,
+    required this.selectedDate,
+    required this.selectedTimeSlot,
+  });
+
+  void _handlePayment(BuildContext context) {
+    // Perform payment processing logic here
+    Navigator.popUntil(context, ModalRoute.withName('/citySelector'));
+
+    // After successful payment, show a dialog with selected information
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Payment Successful'),
+        content: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text('Selected City: ${selectedCity ?? 'None'}'),
+            SizedBox(height: 10),
+            Text('Selected Date: ${selectedDate?.toString() ?? 'None'}'),
+            SizedBox(height: 10),
+            Text('Selected Time Slot: ${selectedTimeSlot?.toString() ?? 'None'}'),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context); // Close the dialog
+            },
+            child: Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Payment'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                _handlePayment(context);
+              },
+              child: Text('Pay'),
+            ),
+            SizedBox(height: 16),
+            TextButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text('Selected Reservation Info'),
+                    content: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text('Selected City: ${selectedCity ?? 'None'}'),
+                        SizedBox(height: 10),
+                        Text('Selected Date: ${selectedDate?.toString() ?? 'None'}'),
+                        SizedBox(height: 10),
+                        Text('Selected Time Slot: ${selectedTimeSlot ?? 'None'}'),
+                      ],
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context); // Close the dialog
+                        },
+                        child: Text('Close'),
+                      ),
+                    ],
+                  ),
+                );
+              },
+              child: Text('View Reservation Info'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

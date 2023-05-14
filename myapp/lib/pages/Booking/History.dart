@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:myapp/pages/Payment/Payment.dart';
 
 class BookingHistoryPage extends StatelessWidget {
   final String city;
@@ -24,10 +25,27 @@ class BookingHistoryPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('Selected City: $city'),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
             Text('Selected Date: ${DateFormat('dd/MM/yyyy').format(date)}'),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
             Text('Selected Time Slot: ${timeSlot.format(context)}'),
+            SizedBox(height: 16),
+            Align(
+              alignment: Alignment.bottomRight,
+              child:  ElevatedButton.icon(
+                icon: Icon(Icons.arrow_forward),
+                label: Text(''),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                      const PaymentPage(),
+                    ),
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),
